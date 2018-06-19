@@ -1,7 +1,7 @@
     @Library("infra-deployment/standardPipeline") _
     standardPipeline {
         appName = "scheduling"
-        appCommit = "latest"
+        appCommit = "c31e6dd"
         stagingAutoscalingGroupMin = "1"
         stagingAutoscalingGroupMax = "2"
         stagingInstanceType = "t2.micro"
