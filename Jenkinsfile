@@ -1,7 +1,7 @@
 @Library("infra-deployment/standardPipeline@ARC-299") _
 standardPipeline {
     appName = "scheduling"
-    appCommit = "60ba047"
+    appCommit = "latest"
 
     stagingBranch = "development"
     stagingAutoscalingGroupMin = "1"
