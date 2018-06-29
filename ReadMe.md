@@ -22,16 +22,24 @@ The Jenkinsfile calls a shared library which updates the AWS infrastructure with
 @Library("infra-deployment/standardPipeline") _
 standardPipeline {
     appName = "scheduling"
-    appCommit = "latest"
-    productionBranch = "master"
+    appCommit = "60ba047"
+
     stagingBranch = "development"
     stagingAutoscalingGroupMin = "1"
     stagingAutoscalingGroupMax = "2"
     stagingInstanceType = "t2.micro"
-    prodAutoscalingGroupMin = "2"
-    prodAutoscalingGroupMax = "4"
-    prodInstanceType = "t2.medium"
+
+    releasePrefix = "release"
+    releaseAutoscalingGroupMin = "1"
+    releaseAutoscalingGroupMax = "2"
+    releaseInstanceType = "t2.micro"
+
+    productionBranch = "master"
+    prodAutoscalingGroupMin = "1"
+    prodAutoscalingGroupMax = "2"
+    prodInstanceType = "t2.micro"
 }
+
 ```
 
 ### Variables
@@ -47,6 +55,10 @@ stagingInstanceType         | instance type (size) in staging; see https://aws.a
 prodAutoscalingGroupMin     | minimum number of machines running in production | 1
 prodAutoscalingGroupMax     | maximum number of machines running in production | 2
 prodInstanceType            | instance type (size) in prod; see https://aws.amazon.com/ec2/instance-types/ | t2.micro
+releasePrefix               | the prefix to separate the actual name from | release
+releaseAutoscalingGroupMin  | minimum number of machines running in production | 1
+releaseAutoscalingGroupMax  | maximum number of machines running in production | 2
+releaseInstanceType         | instance type (size) in prod; see https://aws.amazon.com/ec2/instance-types/ | t2.micro
 
 ## docker-compose.yml
 Please provide a valid `docker-compose.yml` file which will be run via docker-compose
