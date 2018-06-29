@@ -1,11 +1,5 @@
-    @Library("infra-deployment/standardPipeline") _
-    standardPipeline {
-        appName = "scheduling"
+    @Library("infra-deployment/lambdaPipeline") _
+    lambdaPipeline {
         appCommit = "latest"
-        stagingAutoscalingGroupMin = "1"
-        stagingAutoscalingGroupMax = "2"
-        stagingInstanceType = "t2.micro"
-        prodAutoscalingGroupMin = "2"
-        prodAutoscalingGroupMax = "4"
-        prodInstanceType = "t2.medium"
+        runtime = "nodejs6.10"
     }
