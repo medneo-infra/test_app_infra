@@ -1,0 +1,5 @@
+web:
+  image: "nginx:${TAG}"
+  ports:
+   - "80:80"
+  command: /bin/bash -c "exec nginx -g 'daemon off;'"
