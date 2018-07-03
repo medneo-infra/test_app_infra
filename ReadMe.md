@@ -10,16 +10,18 @@ If you want that too, your project needs
   * docker-compose.yml
   * .env
 
-Your environment will be updated automatically for a *production* and *development* branch, as defined in the Jenkinsfile. The FQDN will be printed at the end of the Jenkins build.
+Your environment will be updated automatically for a *production*, *development* and a *release/XYZ* branch, as defined in the Jenkinsfile.
+The FQDN will be printed at the end of the Jenkins build.
 
-Example usage in `test_app_infra`
+Example usage is shown in `test_app_infra`
 - [GitHub](https://github.com/medneo/test_app_infra)
 - [Jenkins](https://jenkins.medneo.com/job/medneo-org-folder/job/test_app_infra/)
 
 ## Jenkinsfile
-The Jenkinsfile calls a shared library which updates the AWS infrastructure with your recent code.
+The Jenkinsfile calls a shared library (as a step in your pipeline definition) which updates the AWS infrastructure with your recent code.
 ```
-@Library("infra-deployment/standardPipeline") _
+library("infra-deployment/standardPipeline")
+
 standardPipeline {
     appName = "scheduling"
     appCommit = "60ba047"

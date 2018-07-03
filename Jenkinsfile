@@ -1,4 +1,4 @@
-@Library("infra-deployment/standardPipeline@ARC-299") _
+@Library("infra-deployment/standardPipeline") _
 standardPipeline {
     appName = "scheduling"
     appCommit = "latest"
