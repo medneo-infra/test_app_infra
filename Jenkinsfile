@@ -1,4 +1,4 @@
-@Library("infra-deployment/standardPipeline") _
+@Library("infra-deployment/standardPipeline@feature/jfrog") _
 standardPipeline {
     appName = "scheduling"
     appCommit = "latest"
