@@ -1,5 +1,4 @@
 web:
-  image: "nginx:${TAG}"
+  image: "medneo-docker.jfrog.io/scheduling-frontend:${TAG}"
   ports:
    - "80:80"
-  command: /bin/bash -c "exec nginx -g 'daemon off;'"
