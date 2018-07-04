@@ -1,4 +1,5 @@
 # Example project for AWS infrastructure and Jenkins integration
+_(for Lambda integration see below)_
 
 Utilising the Jenkins shared library and the [AWS Customer Services Infrastructure](https://github.com/medneo/infrastructure_customerservices)
 
@@ -78,3 +79,5 @@ Please provide a valid `.env` file which is placed right next to the above `dock
 ```
 TAG=latest
 ```
+
+# Example project for AWS infrastructure and Lambda integration
