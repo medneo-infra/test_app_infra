@@ -14,7 +14,7 @@ pipeline {
       }
       stage ('Shared stages') {
         steps {
-          build job: propagate: true, wait: true, standardPipeline {
+          build job: standardPipeline {
           appName = "scheduling"
           appCommit = "latest"
 
@@ -32,7 +32,7 @@ pipeline {
           prodAutoscalingGroupMin = "1"
           prodAutoscalingGroupMax = "2"
           prodInstanceType = "t2.micro"
-        }
+        }, propagate: true, wait: true
       }
     }
   }
