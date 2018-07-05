@@ -14,7 +14,7 @@ pipeline {
       }
       stage ('Shared stages') {
         steps {
-          build job: standardPipeline {
+          build job: propagate: true, wait: true, standardPipeline {
           appName = "scheduling"
           appCommit = "latest"
 
