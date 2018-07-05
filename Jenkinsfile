@@ -32,7 +32,7 @@ pipeline {
           prodAutoscalingGroupMin = "1"
           prodAutoscalingGroupMax = "2"
           prodInstanceType = "t2.micro"
-        }, propagate: true, wait: true
+        }
       }
     }
   }
