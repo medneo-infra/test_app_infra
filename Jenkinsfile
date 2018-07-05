@@ -15,8 +15,7 @@ pipeline {
   }
   post {
       success {
-        steps {
-          standardPipeline, propagate: true, wait: true {
+        standardPipeline {
             appName = "scheduling"
             appCommit = "latest"
 
@@ -38,4 +37,3 @@ pipeline {
         }
       }
     }
-  }
