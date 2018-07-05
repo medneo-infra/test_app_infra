@@ -15,7 +15,7 @@ pipeline {
   }
   post {
       success {
-        build job: standardPipeline {
+        step (standardPipeline {
             appName = "scheduling"
             appCommit = "latest"
 
@@ -33,7 +33,7 @@ pipeline {
             prodAutoscalingGroupMin = "1"
             prodAutoscalingGroupMax = "2"
             prodInstanceType = "t2.micro"
-          }
+          })
         }
       }
     }
