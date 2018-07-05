@@ -4,6 +4,10 @@ pipeline {
     agent {
         label 'packer'
     }
+    environment {
+      def terraform  = "docker run --rm -w /tf/sources/stacks/applications/alb-based/infra -v ${env.WORKSPACE}/:/tf hashicorp/terraform:light"
+      def packer     = "docker run --rm -w /packer/sources/stacks/applications/alb-based/packer -v ${env.WORKSPACE}/:/packer"
+    }
     stages {
       stage ('Start') {
         steps {
