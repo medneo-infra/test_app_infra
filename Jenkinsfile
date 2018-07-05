@@ -1,20 +1,32 @@
-@Library("infra-deployment/standardPipeline") _
-standardPipeline {
-    appName = "scheduling"
-    appCommit = "latest"
+@Library("infra-deployment/standardPipeline@integration") _
 
-    stagingBranch = "development"
-    stagingAutoscalingGroupMin = "1"
-    stagingAutoscalingGroupMax = "2"
-    stagingInstanceType = "t2.micro"
+pipeline {
+    agent {
+        label 'packer'
+    }
+  stage ('Start') {
+    sh "echo 'been here'"
+  }
 
-    releasePrefix = "release"
-    releaseAutoscalingGroupMin = "1"
-    releaseAutoscalingGroupMax = "2"
-    releaseInstanceType = "t2.micro"
+  stage ('Test') {
+    standardPipeline {
+        appName = "scheduling"
+        appCommit = "latest"
 
-    productionBranch = "master"
-    prodAutoscalingGroupMin = "1"
-    prodAutoscalingGroupMax = "2"
-    prodInstanceType = "t2.micro"
+        stagingBranch = "development"
+        stagingAutoscalingGroupMin = "1"
+        stagingAutoscalingGroupMax = "2"
+        stagingInstanceType = "t2.micro"
+
+        releasePrefix = "release"
+        releaseAutoscalingGroupMin = "1"
+        releaseAutoscalingGroupMax = "2"
+        releaseInstanceType = "t2.micro"
+
+        productionBranch = "master"
+        prodAutoscalingGroupMin = "1"
+        prodAutoscalingGroupMax = "2"
+        prodInstanceType = "t2.micro"
+    }
+  }
 }
