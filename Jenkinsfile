@@ -12,7 +12,7 @@ pipeline {
           }
         }
       }
-      stage {
+      stage ('the shared steps'){
         steps {
           build job: standardPipeline {
               appName = "scheduling"
