@@ -15,7 +15,8 @@ pipeline {
   }
   post {
       success {
-          job: standardPipeline, propagate: true, wait: true {
+        steps {
+          standardPipeline, propagate: true, wait: true {
             appName = "scheduling"
             appCommit = "latest"
 
@@ -34,6 +35,7 @@ pipeline {
             prodAutoscalingGroupMax = "2"
             prodInstanceType = "t2.micro"
           }
+        }
       }
     }
   }
