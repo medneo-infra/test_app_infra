@@ -15,7 +15,7 @@ pipeline {
   }
   post {
       success {
-          build job: standardPipeline {
+          job: standardPipeline, propagate: true, wait: true {
             appName = "scheduling"
             appCommit = "latest"
 

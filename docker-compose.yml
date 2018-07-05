@@ -1,4 +1,4 @@
-web:
+scheduling:
   image: "medneo-docker.jfrog.io/scheduling-frontend:${TAG}"
   ports:
    - "80:80"
