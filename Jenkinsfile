@@ -6,7 +6,11 @@ pipeline {
     }
     stages {
       stage ('Start') {
-        sh "echo 'been here'"
+        steps {
+          script {
+            sh "echo 'been here'"
+          }
+        }
       }
 
       stage ('Test') {
