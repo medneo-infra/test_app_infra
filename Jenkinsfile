@@ -35,7 +35,7 @@ pipeline {
   }
   post {
       success {
-          standardPipeline (config)
+          standardPipeline (deployConfig)
       }
   }
 }
