@@ -1,4 +1,4 @@
-@Library("infra-deployment/testPipeline@integration") _
+@Library("infra-deployment/standardPipeline@integration") _
 
 def deployConfig = [
   appName : "scheduling",
