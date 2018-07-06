@@ -35,7 +35,7 @@ pipeline {
   }
   post {
       success {
-          def result = standardPipeline {
+          standardPipeline() {
             appName = "scheduling"
             appCommit = "latest"
 
