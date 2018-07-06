@@ -35,9 +35,7 @@ pipeline {
   }
   post {
       success {
-        step {
           standardPipeline (config)
-        }
       }
   }
 }
