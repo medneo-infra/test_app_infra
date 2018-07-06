@@ -1,4 +1,24 @@
-@Library("infra-deployment/standardPipeline@integration") _
+@Library("infra-deployment/testPipeline@integration") _
+
+def deployConfig = [
+  appName : "scheduling",
+  appCommit : "latest",
+
+  stagingBranch : "development",
+  stagingAutoscalingGroupMin : "1",
+  stagingAutoscalingGroupMax : "2",
+  stagingInstanceType : "t2.micro",
+
+  releasePrefix : "release",
+  releaseAutoscalingGroupMin : "1",
+  releaseAutoscalingGroupMax : "2",
+  releaseInstanceType : "t2.micro",
+
+  productionBranch : "master",
+  prodAutoscalingGroupMin : "1",
+  prodAutoscalingGroupMax : "2",
+  prodInstanceType : "t2.micro"
+]
 
 pipeline {
     agent {
@@ -15,25 +35,9 @@ pipeline {
   }
   post {
       success {
-        step (standardPipeline {
-            appName = "scheduling"
-            appCommit = "latest"
-
-            stagingBranch = "development"
-            stagingAutoscalingGroupMin = "1"
-            stagingAutoscalingGroupMax = "2"
-            stagingInstanceType = "t2.micro"
-
-            releasePrefix = "release"
-            releaseAutoscalingGroupMin = "1"
-            releaseAutoscalingGroupMax = "2"
-            releaseInstanceType = "t2.micro"
-
-            productionBranch = "master"
-            prodAutoscalingGroupMin = "1"
-            prodAutoscalingGroupMax = "2"
-            prodInstanceType = "t2.micro"
-          })
+        step {
+          testPipeline (config)
         }
       }
-    }
+  }
+}
