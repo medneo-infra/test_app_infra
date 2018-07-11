@@ -28,7 +28,7 @@ pipeline {
       stage ('Start') {
         steps {
           script {
-            sh "echo 'been here on Monday'"
+            sh "echo 'been here'"
           }
         }
       }
