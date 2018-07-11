@@ -32,15 +32,10 @@ pipeline {
           }
         }
       }
-      stage('Deploy') {
-            when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS'
-              }
-            }
-            steps {
-              standardPipeline(deployConfig)
-            }
-        }
+  }
+  post {
+    success {
+      standardPipeline(deployConfig)
+    }
   }
 }
