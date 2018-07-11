@@ -1,4 +1,4 @@
-@Library("infra-deployment/standardPipeline@integration") _
+@Library("infra-deployment/standardPipeline@delete-release") _
 
 def deployConfig = [
   appName : "scheduling",
@@ -28,14 +28,14 @@ pipeline {
       stage ('Start') {
         steps {
           script {
-            sh "echo 'been here'"
+            sh "echo 'been here on Monday'"
           }
         }
       }
   }
   post {
-      success {
-          standardPipeline(deployConfig)
-      }
+    success {
+      standardPipeline(deployConfig)
+    }
   }
 }
