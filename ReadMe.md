@@ -1,13 +1,9 @@
-# Example project for AWS infrastructure and Jenkins integration
-_(for Lambda integration see below)_
+# jenkins-shared-library - AMI based deployment
 
-Utilising the Jenkins shared library and the [AWS Customer Services Infrastructure](https://github.com/medneo/infrastructure_customerservices)
+To utilise the [AWS Customer Services Infrastructure](https://github.com/medneo/infrastructure_customerservices), your project needs
 
-If you want that too, your project needs
-
-* to be registered (please reach out to @dassbj01)
-* have 3 basic files included at top level
-  * Jenkinsfile
+* to have 3 basic files included at top level
+  * Jenkinsfile, loading the AMI deployment pipeline `Library("infra-deployment/standardPipeline") _`
   * docker-compose.yml
   * .env
 
@@ -19,30 +15,49 @@ Example usage is shown in `test_app_infra`
 - [Jenkins](https://jenkins.medneo.com/job/medneo-org-folder/job/test_app_infra/)
 
 ## Jenkinsfile
-The Jenkinsfile calls a shared library (as a step in your pipeline definition) which updates the AWS infrastructure with your recent code.
+The Jenkinsfile calls a shared library (as a post step in your pipeline definition) which updates the AWS infrastructure with your recent code.
 ```
-library("infra-deployment/standardPipeline")
+@Library("infra-deployment/standardPipeline@integration") _
 
-standardPipeline {
-    appName = "scheduling"
-    appCommit = "60ba047"
+def deployConfig = [
+  appName : "scheduling",
+  appCommit : "latest",
 
-    stagingBranch = "development"
-    stagingAutoscalingGroupMin = "1"
-    stagingAutoscalingGroupMax = "2"
-    stagingInstanceType = "t2.micro"
+  stagingBranch : "development",
+  stagingAutoscalingGroupMin : "1",
+  stagingAutoscalingGroupMax : "2",
+  stagingInstanceType : "t2.micro",
 
-    releasePrefix = "release"
-    releaseAutoscalingGroupMin = "1"
-    releaseAutoscalingGroupMax = "2"
-    releaseInstanceType = "t2.micro"
+  releasePrefix : "release",
+  releaseAutoscalingGroupMin : "1",
+  releaseAutoscalingGroupMax : "2",
+  releaseInstanceType : "t2.micro",
 
-    productionBranch = "master"
-    prodAutoscalingGroupMin = "1"
-    prodAutoscalingGroupMax = "2"
-    prodInstanceType = "t2.micro"
+  productionBranch : "master",
+  prodAutoscalingGroupMin : "1",
+  prodAutoscalingGroupMax : "2",
+  prodInstanceType : "t2.micro"
+]
+
+pipeline {
+    agent {
+        label 'packer'
+    }
+    stages {
+      stage ('Start') {
+        steps {
+          script {
+            sh "echo 'been here'"
+          }
+        }
+      }
+  }
+  post {
+      success {
+          standardPipeline(deployConfig)
+      }
+  }
 }
-
 ```
 
 ### Variables
@@ -68,10 +83,9 @@ Please provide a valid `docker-compose.yml` file which will be run via docker-co
 
 ```
 web:
-  image: "nginx:${TAG}"
+  image: "medneo-docker.jfrog.io/XYZ:${TAG}"
   ports:
    - "80:80"
-  command: /bin/bash -c "exec nginx -g 'daemon off;'"
 ```
 
 ## .env
@@ -80,4 +94,82 @@ Please provide a valid `.env` file which is placed right next to the above `dock
 TAG=latest
 ```
 
-# Example project for AWS infrastructure and Lambda integration
+# jenkins-shared-library - Lambda deployments
+
+To utilise the [AWS Customer Services Infrastructure](https://github.com/medneo/infrastructure_customerservices), your project needs
+
+* to be registered (please reach out to @dassbj01)
+* have 3 basic files included at top level
+  * Jenkinsfile
+  * ...
+
+Your environment will be updated automatically for a *production*, *development* and a *release/XYZ* branch, as defined in the Jenkinsfile.
+The FQDN will be printed at the end of the Jenkins build.
+
+Example usage is shown in `test_app_infra`
+- [GitHub](https://github.com/medneo/test_app_infra)
+- [Jenkins](https://jenkins.medneo.com/job/medneo-org-folder/job/test_app_infra/)
+
+## Jenkinsfile
+The Jenkinsfile calls a shared library (as a step in your pipeline definition) which updates the AWS infrastructure with your recent code.
+```
+@Library("infra-deployment/lambdaPipeline") _
+
+def deployConfig = [
+  appName : "scheduling",
+  appCommit : "latest",
+
+  stagingBranch : "development",
+  stagingAutoscalingGroupMin : "1",
+  stagingAutoscalingGroupMax : "2",
+  stagingInstanceType : "t2.micro",
+
+  releasePrefix : "release",
+  releaseAutoscalingGroupMin : "1",
+  releaseAutoscalingGroupMax : "2",
+  releaseInstanceType : "t2.micro",
+
+  productionBranch : "master",
+  prodAutoscalingGroupMin : "1",
+  prodAutoscalingGroupMax : "2",
+  prodInstanceType : "t2.micro"
+]
+
+pipeline {
+    agent {
+        label 'packer'
+    }
+    stages {
+      stage ('Start') {
+        steps {
+          script {
+            sh "echo 'been here'"
+          }
+        }
+      }
+  }
+  post {
+      success {
+          standardPipeline(deployConfig)
+      }
+  }
+}
+```
+
+### Variables
+Name                        | Purpose | example value
+----                        | ------- | -------------
+appName                     | this is the registered name of the application and part of the FQDN | scheduling
+appCommit                   | if you want to pin the deployed app to a certain commit (aka version) | either 'latest' or a GitCommit ID (short or long)
+productionBranch            | what is the production branch | master
+stagingBranch               | what is the staging branch | development
+stagingAutoscalingGroupMin  | minimum number of machines running in staging | 1
+stagingAutoscalingGroupMax  | maximum number of machines running in staging | 2
+stagingInstanceType         | instance type (size) in staging; see https://aws.amazon.com/ec2/instance-types/ | t2.micro
+prodAutoscalingGroupMin     | minimum number of machines running in production | 1
+prodAutoscalingGroupMax     | maximum number of machines running in production | 2
+prodInstanceType            | instance type (size) in prod; see https://aws.amazon.com/ec2/instance-types/ | t2.micro
+releasePrefix               | the prefix to separate the actual name from | release
+releaseAutoscalingGroupMin  | minimum number of machines running in production | 1
+releaseAutoscalingGroupMax  | maximum number of machines running in production | 2
+releaseInstanceType         | instance type (size) in prod; see https://aws.amazon.com/ec2/instance-types/ | t2.micro
