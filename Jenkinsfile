@@ -3,6 +3,7 @@
 def deployConfig = [
   appName : "scheduling",
   appCommit : "latest",
+  terraformProject : "customer-service",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -28,7 +29,7 @@ pipeline {
       stage ('Start') {
         steps {
           script {
-            sh "echo 'been here on Monday'"
+            sh "echo 'been here'"
           }
         }
       }
