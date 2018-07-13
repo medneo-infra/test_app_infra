@@ -1,4 +1,4 @@
-@Library("infra-deployment/standardPipeline@delete-release") _
+@Library("infra-deployment/standardPipeline") _
 
 def deployConfig = [
   appName : "scheduling",
