@@ -3,6 +3,7 @@
 def deployConfig = [
   appName : "scheduling",
   appCommit : "latest",
+  terraformProject : "customer-service",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
