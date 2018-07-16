@@ -14,7 +14,7 @@ pipeline {
       stage ('Deploy') {
         steps {
             script {
-              @Library("infra-deployment/standardPipeline") _
+              @Library("infra-deployment/standardPipeline@deploySrc") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "latest",
