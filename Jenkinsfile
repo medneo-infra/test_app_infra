@@ -23,7 +23,7 @@ pipeline {
               @Library("infra-deployment/standardPipeline@hotfix/0.1.2-buildDecision") _
               def deployConfig = [
                 appName : "scheduling",
-                appCommit : "latest",
+                appCommit : "5802d8fdb589b149575514121421ede360489739",
                 terraformProject : "customer-service",
                 featureBranch: "feature/nodes",
 
