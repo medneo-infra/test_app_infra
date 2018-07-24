@@ -1,3 +1,27 @@
+@Library("infra-deployment/standardPipeline@feature/nodes") _
+import com.deployment.GlobalVars
+def deployConfig = [
+  appName : "scheduling",
+  appCommit : "5802d8fdb589b149575514121421ede360489739",
+  terraformProject : "customer-service",
+  featureBranch: "feature/nodes",
+
+  stagingBranch : "development",
+  stagingAutoscalingGroupMin : "1",
+  stagingAutoscalingGroupMax : "2",
+  stagingInstanceType : "t2.micro",
+
+  releasePrefix : "release",
+  releaseAutoscalingGroupMin : "1",
+  releaseAutoscalingGroupMax : "2",
+  releaseInstanceType : "t2.micro",
+
+  productionBranch : "master",
+  prodAutoscalingGroupMin : "1",
+  prodAutoscalingGroupMax : "2",
+  prodInstanceType : "t2.micro"
+]
+
 pipeline {
   agent {
         node {
@@ -27,26 +51,3 @@ pipeline {
       }
   }
 }
-
-@Library("infra-deployment/standardPipeline@feature/nodes") _
-def deployConfig = [
-  appName : "scheduling",
-  appCommit : "5802d8fdb589b149575514121421ede360489739",
-  terraformProject : "customer-service",
-  featureBranch: "feature/nodes",
-
-  stagingBranch : "development",
-  stagingAutoscalingGroupMin : "1",
-  stagingAutoscalingGroupMax : "2",
-  stagingInstanceType : "t2.micro",
-
-  releasePrefix : "release",
-  releaseAutoscalingGroupMin : "1",
-  releaseAutoscalingGroupMax : "2",
-  releaseInstanceType : "t2.micro",
-
-  productionBranch : "master",
-  prodAutoscalingGroupMin : "1",
-  prodAutoscalingGroupMax : "2",
-  prodInstanceType : "t2.micro"
-]
