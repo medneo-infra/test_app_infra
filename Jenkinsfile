@@ -29,6 +29,7 @@ pipeline {
 }
 
 @Library("infra-deployment/standardPipeline@feature/nodes") _
+import com.deployment.GlobalVars
 def deployConfig = [
   appName : "scheduling",
   appCommit : "latest",
