@@ -9,7 +9,7 @@ pipeline {
         steps {
           script {
             sh "echo 'been here'"
-            echo "${GlobalVars.GIT_COMMIT}"
+            //echo "${GlobalVars.GIT_COMMIT}"
           }
         }
       }
@@ -20,15 +20,15 @@ pipeline {
         }
         steps {
             script {
-              // standardPipeline(deployConfig)
-              echo "Been here too"
+              standardPipeline(deployConfig)
+              //echo "Been here too"
             }
         }
       }
   }
 }
 
-@Library("infra-deployment/standardPipeline@feature/nodes") _
+@Library("infra-deployment/standardPipeline@hotfix/0.1.2-buildDecision") _
 import com.deployment.GlobalVars
 def deployConfig = [
   appName : "scheduling",
