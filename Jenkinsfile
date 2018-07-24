@@ -33,7 +33,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            standardPipeline.prepDeploymentSettings(deployConfig)
+            standardPipeline.prepDeployment(deployConfig)
           }
         }
       }
