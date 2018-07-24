@@ -33,7 +33,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            standardPipeline.prepDeployment(deployConfig)
+            standardPipeline.prepDeployment deployConfig
           }
         }
       }
@@ -45,7 +45,7 @@ pipeline {
         steps {
             script {
               echo "On _packer_ node"
-              standardPipeline.doDeployment(deployConfig)
+              standardPipeline.doDeployment deployConfig
             }
         }
       }
