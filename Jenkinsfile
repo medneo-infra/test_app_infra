@@ -1,4 +1,9 @@
 pipeline {
+  agent {
+        node {
+            label 'lol'
+        }
+    }
     stages {
       stage ('Start') {
         steps {
