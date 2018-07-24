@@ -25,7 +25,7 @@ pipeline {
                 appName : "scheduling",
                 appCommit : "latest",
                 terraformProject : "customer-service",
-                //featureBranch: "feature/nodes",
+                featureBranch: "feature/nodes",
 
                 stagingBranch : "development",
                 stagingAutoscalingGroupMin : "1",
