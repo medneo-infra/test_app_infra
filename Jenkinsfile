@@ -20,7 +20,7 @@ pipeline {
         }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@hotfix/0.1.2-buildDecision") _
+              @Library("infra-deployment/standardPipeline@master") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
