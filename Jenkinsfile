@@ -1,24 +1,31 @@
 pipeline {
-    agent {
-        label 'packer'
+  agent {
+        node {
+            label 'lol'
+        }
     }
     stages {
       stage ('Start') {
         steps {
           script {
             sh "echo 'been here'"
+            //echo "${GlobalVars.GIT_COMMIT}"
           }
         }
       }
 
       stage ('Deploy') {
+        agent {
+          label 'packer'
+        }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@development") _
+              @Library("infra-deployment/standardPipeline@hotfix/0.1.2-buildDecision") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "latest",
                 terraformProject : "customer-service",
+                //featureBranch: "feature/nodes",
 
                 stagingBranch : "development",
                 stagingAutoscalingGroupMin : "1",
@@ -36,6 +43,7 @@ pipeline {
                 prodInstanceType : "t2.micro"
               ]
               standardPipeline(deployConfig)
+              //echo "Been here too"
             }
         }
       }
