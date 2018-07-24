@@ -21,6 +21,7 @@ pipeline {
         steps {
             script {
               // standardPipeline(deployConfig)
+              echo "Been here too"
             }
         }
       }
