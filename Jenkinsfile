@@ -1,4 +1,6 @@
 @Library("infra-deployment@feature/nodes") _
+
+import com.deployment.GlobalVars
 def deployConfig = [
   appName : "scheduling",
   appCommit : "5802d8fdb589b149575514121421ede360489739",
@@ -44,7 +46,7 @@ pipeline {
         steps {
             script {
               echo "On _packer_ node"
-              //doDeployment deployConfig
+              doDeployment deployConfig
             }
         }
       }
