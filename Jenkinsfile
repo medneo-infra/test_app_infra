@@ -19,7 +19,7 @@ pipeline {
         }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@master") _
+              @Library("infra-deployment/standardPipeline@v0.1.2") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
@@ -42,6 +42,7 @@ pipeline {
                 prodAutoscalingGroupMax : "2",
                 prodInstanceType : "t2.micro"
               ]
+              standardPipeline(deployConfig)
             }
         }
       }
