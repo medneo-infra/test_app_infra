@@ -34,8 +34,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            standardPipeline.sayHello("Schtring")
-            standardPipeline.prepDeployment(deployConfig)
+            prepDeployment(deployConfig)
           }
         }
       }
@@ -47,7 +46,7 @@ pipeline {
         steps {
             script {
               echo "On _packer_ node"
-              //standardPipeline.doDeployment deployConfig
+              //doDeployment deployConfig
             }
         }
       }
