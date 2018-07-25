@@ -1,5 +1,3 @@
-import com.deployment.GlobalVars
-
 @Library("infra-deployment@feature/nodes") _
 def deployConfig = [
   appName : "scheduling",
