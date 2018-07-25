@@ -1,6 +1,6 @@
 import com.deployment.GlobalVars
 
-@Library("infra-deployment/standardPipeline@feature/nodes") _
+@Library("infra-deployment@feature/nodes") _
 def deployConfig = [
   appName : "scheduling",
   appCommit : "5802d8fdb589b149575514121421ede360489739",
