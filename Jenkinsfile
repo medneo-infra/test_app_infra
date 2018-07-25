@@ -9,7 +9,6 @@ pipeline {
         steps {
           script {
             sh "echo 'been here'"
-            //echo "${GlobalVars.GIT_COMMIT}"
           }
         }
       }
@@ -24,6 +23,7 @@ pipeline {
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
+                //appCommit : "latest",
                 terraformProject : "customer-service",
                 //featureBranch: "feature/nodes",
 
@@ -42,8 +42,6 @@ pipeline {
                 prodAutoscalingGroupMax : "2",
                 prodInstanceType : "t2.micro"
               ]
-              standardPipeline(deployConfig)
-              //echo "Been here too"
             }
         }
       }
