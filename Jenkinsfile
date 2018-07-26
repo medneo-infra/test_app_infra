@@ -51,7 +51,7 @@ pipeline {
         steps {
             script {
               echo "On _packer_ node"
-              doBuild()
+              doBuild(deployConfig)
             }
         }
       }
