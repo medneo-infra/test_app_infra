@@ -1,11 +1,10 @@
 @Library("infra-deployment@feature/nodes") _
 
-import com.deployment.GlobalVars
-def globalVars_tmp = GlobalVars
+def globalVars_local = new com.deployment.GlobalVars()
 def deployConfig = [
   appName : "scheduling",
-  //appCommit : "5802d8fdb589b149575514121421ede360489739",
-  appCommit : "latest",
+  appCommit : "5802d8fdb589b149575514121421ede360489739",
+  //appCommit : "latest",
   terraformProject : "customer-service",
   featureBranch: "feature/nodes",
 
@@ -36,7 +35,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            prepDeployment(deployConfig, globalVars_tmp)
+            prepDeployment(deployConfig, globalVars_local)
           }
         }
       }
