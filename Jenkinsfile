@@ -1,6 +1,5 @@
 @Library("infra-deployment@feature/nodes") _
 
-// def globalVars_local = new com.deployment.GlobalVars() // Operation not permitted
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
@@ -59,31 +58,30 @@ pipeline {
             }
         }
         post {
-          // cleanup as we checkout again
+          // cleanup as we check out again down below
           always { dir('deploySrc') { deleteDir() } }
         }
       }
-      //
-      // stage ('Deploy') {
-      //   agent {
-      //     label 'packer'
-      //   }
-      //   when {
-      //           beforeAgent true
-      //           anyOf {
-      //             expression { GlobalVars.FEATURE_BRANCH != null }
-      //             expression { return GlobalVars.STAGING_DECISION.toBoolean() }
-      //             expression { return GlobalVars.RELEASE_DECISION.toBoolean() }
-      //             expression { return GlobalVars.PRODUCTION_DECISION.toBoolean() }
-      //           }
-      //   }
-      //   steps {
-      //       script {
-      //         echo "On _packer_ node"
-      //         doCheckout()
-      //         doDeployment(deployConfig)
-      //       }
-      //   }
-      // }
+      stage ('Deploy') {
+        agent {
+          label 'packer'
+        }
+        when {
+            beforeAgent true
+            anyOf {
+              expression { GlobalVars_local.FEATURE_BRANCH != null }
+              expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
+              expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
+              expression { return GloGlobalVars_localbalVars.PRODUCTION_DECISION.toBoolean() }
+            }
+        }
+        steps {
+            script {
+              echo "On _packer_ node"
+              doCheckout()
+              doDeployment(deployConfig, GlobalVars_local)
+            }
+        }
+      }
   }
 }
