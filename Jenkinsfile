@@ -1,7 +1,7 @@
 @Library("infra-deployment@feature/nodes") _
 
 import com.deployment.GlobalVars
-def GlobalVars globalVars_tmp = GlobalVars
+def globalVars_tmp = GlobalVars
 def deployConfig = [
   appName : "scheduling",
   //appCommit : "5802d8fdb589b149575514121421ede360489739",
