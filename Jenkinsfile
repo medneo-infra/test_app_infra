@@ -39,14 +39,39 @@ pipeline {
         }
       }
 
-      stage ('Deploy') {
+      stage ('Build') {
         agent {
           label 'packer'
+        }
+        when {
+                beforeAgent true
+                expression { return GlobalVars.BUILD_DECISION.toBoolean() }
         }
         steps {
             script {
               echo "On _packer_ node"
-              doDeployment deployConfig
+              doBuild()
+            }
+        }
+      }
+
+      stage ('Deploy') {
+        agent {
+          label 'packer'
+        }
+        when {
+                beforeAgent true
+                anyOf {
+                  expression { GlobalVars.FEATURE_BRANCH != null }
+                  expression { return GlobalVars.STAGING_DECISION.toBoolean() }
+                  expression { return GlobalVars.RELEASE_DECISION.toBoolean() }
+                  expression { return GlobalVars.PRODUCTION_DECISION.toBoolean() }
+                }
+        }
+        steps {
+            script {
+              echo "On _packer_ node"
+              doDeployment(deployConfig)
             }
         }
       }
