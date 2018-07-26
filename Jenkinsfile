@@ -33,7 +33,7 @@ pipeline {
         }
     }
     stages {
-      stage ('Prepare deployment') {
+      stage ('Prepare Deployment') {
         steps {
           script {
             echo "On _lol_ node"
@@ -54,7 +54,7 @@ pipeline {
             script {
               echo "On _packer_ node"
               doCheckout()
-              doBuild(deployConfig, GlobalVars_local)
+              amiBuild(deployConfig, GlobalVars_local)
             }
         }
         post {
@@ -62,7 +62,7 @@ pipeline {
           always { dir('deploySrc') { deleteDir() } }
         }
       }
-      stage ('Deploy') {
+      stage ('Deployment') {
         agent {
           label 'packer'
         }
@@ -79,7 +79,7 @@ pipeline {
             script {
               echo "On _packer_ node"
               doCheckout()
-              doDeployment(deployConfig, GlobalVars_local)
+              amiDeployment(deployConfig, GlobalVars_local)
             }
         }
       }
