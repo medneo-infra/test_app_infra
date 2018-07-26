@@ -31,7 +31,7 @@ pipeline {
         }
     }
     stages {
-      stage ('Start') {
+      stage ('Prepare deployment') {
         steps {
           script {
             echo "On _lol_ node"
@@ -72,6 +72,7 @@ pipeline {
         steps {
             script {
               echo "On _packer_ node"
+              doCheckout()
               doDeployment(deployConfig)
             }
         }
