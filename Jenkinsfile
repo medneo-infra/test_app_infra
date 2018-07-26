@@ -1,8 +1,7 @@
 @Library("infra-deployment@feature/nodes") _
 
 import com.deployment.GlobalVars
-def GlobalVars globalVars_temp = new GlobalVars()
-
+def GlobalVars globalVars_tmp
 def deployConfig = [
   appName : "scheduling",
   //appCommit : "5802d8fdb589b149575514121421ede360489739",
@@ -37,7 +36,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            prepDeployment(deployConfig, globalVars_temp)
+            prepDeployment(deployConfig, globalVars_tmp)
           }
         }
       }
