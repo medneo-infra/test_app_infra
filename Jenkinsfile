@@ -2,7 +2,6 @@
 
 // def globalVars_local = new com.deployment.GlobalVars() // Operation not permitted
 import com.deployment.GlobalVars
-def Class globalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "scheduling",
@@ -38,7 +37,7 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            prepDeployment(deployConfig, globalVars_local)
+            prepDeployment(deployConfig, GlobalVars)
           }
         }
       }
