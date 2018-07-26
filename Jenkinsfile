@@ -48,14 +48,19 @@ pipeline {
           label 'packer'
         }
         when {
-                beforeAgent true
-                expression { return GlobalVars_local.BUILD_DECISION.toBoolean() }
+          beforeAgent true
+          expression { return GlobalVars_local.BUILD_DECISION.toBoolean() }
         }
         steps {
             script {
               echo "On _packer_ node"
+              doCheckout()
               doBuild(deployConfig, GlobalVars_local)
             }
+        }
+        post {
+          // cleanup as we checkout again
+          always { dir('deploySrc') { deleteDir() } }
         }
       }
       //
