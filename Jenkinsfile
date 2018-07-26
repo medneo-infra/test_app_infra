@@ -1,6 +1,9 @@
 @Library("infra-deployment@feature/nodes") _
 
-def globalVars_local = new com.deployment.GlobalVars()
+// def globalVars_local = new com.deployment.GlobalVars() // Operation not permitted
+import com.deployment.GlobalVars
+def globalVars_local = Map GlobalVars
+
 def deployConfig = [
   appName : "scheduling",
   appCommit : "5802d8fdb589b149575514121421ede360489739",
