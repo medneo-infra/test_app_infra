@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/nodes") _
 
-import com.deployment.GlobalVars
+def globalVars = new com.deployment.GlobalVars()
 def deployConfig = [
   appName : "scheduling",
   //appCommit : "5802d8fdb589b149575514121421ede360489739",
@@ -35,47 +35,47 @@ pipeline {
         steps {
           script {
             echo "On _lol_ node"
-            prepDeployment(deployConfig)
+            prepDeployment(deployConfig, globalVars)
           }
         }
       }
 
-      stage ('Build') {
-        agent {
-          label 'packer'
-        }
-        when {
-                beforeAgent true
-                expression { return GlobalVars.BUILD_DECISION.toBoolean() }
-        }
-        steps {
-            script {
-              echo "On _packer_ node"
-              doBuild(deployConfig)
-            }
-        }
-      }
-
-      stage ('Deploy') {
-        agent {
-          label 'packer'
-        }
-        when {
-                beforeAgent true
-                anyOf {
-                  expression { GlobalVars.FEATURE_BRANCH != null }
-                  expression { return GlobalVars.STAGING_DECISION.toBoolean() }
-                  expression { return GlobalVars.RELEASE_DECISION.toBoolean() }
-                  expression { return GlobalVars.PRODUCTION_DECISION.toBoolean() }
-                }
-        }
-        steps {
-            script {
-              echo "On _packer_ node"
-              doCheckout()
-              doDeployment(deployConfig)
-            }
-        }
-      }
+      // stage ('Build') {
+      //   agent {
+      //     label 'packer'
+      //   }
+      //   when {
+      //           beforeAgent true
+      //           expression { return GlobalVars.BUILD_DECISION.toBoolean() }
+      //   }
+      //   steps {
+      //       script {
+      //         echo "On _packer_ node"
+      //         doBuild(deployConfig)
+      //       }
+      //   }
+      // }
+      //
+      // stage ('Deploy') {
+      //   agent {
+      //     label 'packer'
+      //   }
+      //   when {
+      //           beforeAgent true
+      //           anyOf {
+      //             expression { GlobalVars.FEATURE_BRANCH != null }
+      //             expression { return GlobalVars.STAGING_DECISION.toBoolean() }
+      //             expression { return GlobalVars.RELEASE_DECISION.toBoolean() }
+      //             expression { return GlobalVars.PRODUCTION_DECISION.toBoolean() }
+      //           }
+      //   }
+      //   steps {
+      //       script {
+      //         echo "On _packer_ node"
+      //         doCheckout()
+      //         doDeployment(deployConfig)
+      //       }
+      //   }
+      // }
   }
 }
