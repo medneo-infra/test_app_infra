@@ -2,7 +2,7 @@
 
 // def globalVars_local = new com.deployment.GlobalVars() // Operation not permitted
 import com.deployment.GlobalVars
-def Map globalVars_local = GlobalVars
+def Class globalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "scheduling",
