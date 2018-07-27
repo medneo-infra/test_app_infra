@@ -40,7 +40,7 @@ pipeline {
                 productionBranch : "master",
                 prodAutoscalingGroupMin : "1",
                 prodAutoscalingGroupMax : "2",
-                prodInstanceType : "t2.micro"
+                prodInstanceType : "t2.micro",
 
                 healhEndpoint : "/"
               ]
