@@ -19,7 +19,7 @@ pipeline {
         }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@v0.1.2") _
+              @Library("infra-deployment/standardPipeline@feature/alb_healthcheck") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
@@ -41,6 +41,8 @@ pipeline {
                 prodAutoscalingGroupMin : "1",
                 prodAutoscalingGroupMax : "2",
                 prodInstanceType : "t2.micro"
+
+                healhEndpoint : "/"
               ]
               standardPipeline(deployConfig)
             }
