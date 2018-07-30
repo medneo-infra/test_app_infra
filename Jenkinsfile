@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/nodes") _
+@Library("infra-deployment@development") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
@@ -21,7 +21,9 @@ def deployConfig = [
   productionBranch : "master",
   prodAutoscalingGroupMin : "1",
   prodAutoscalingGroupMax : "1",
-  prodInstanceType : "t2.micro"
+  prodInstanceType : "t2.micro",
+
+  healthEndpoint : "/"
 ]
 
 pipeline {
