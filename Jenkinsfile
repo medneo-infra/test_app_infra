@@ -32,56 +32,29 @@ pipeline {
             label 'lol'
         }
     }
-    stages {
-      stage ('Prepare Deployment') {
-        steps {
-          script {
-            echo "On _lol_ node"
-            prepDeployment(deployConfig, GlobalVars_local)
-          }
-        }
-      }
-
-      stage ('Build') {
-        agent {
-          label 'packer'
-        }
-        when {
+    stage ('Deployment') {
+      agent { label 'packer' }
+      when {
           beforeAgent true
-          expression { return GlobalVars_local.BUILD_DECISION.toBoolean() }
-        }
-        steps {
-            script {
-              echo "On _packer_ node"
-              doCheckout()
-              amiBuild(deployConfig, GlobalVars_local)
-            }
-        }
-        post {
-          // cleanup as we check out again down below
-          always { dir('deploySrc') { deleteDir() } }
-        }
-      }
-      stage ('Deployment') {
-        agent {
-          label 'packer'
-        }
-        when {
-            beforeAgent true
+          allOf {
+            expression { return prepDeployment(deployConfig, GlobalVars_local) }
             anyOf {
               expression { GlobalVars_local.FEATURE_BRANCH != null }
               expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
               expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
               expression { return GloGlobalVars_localbalVars.PRODUCTION_DECISION.toBoolean() }
             }
-        }
-        steps {
-            script {
-              echo "On _packer_ node"
-              doCheckout()
-              amiDeployment(deployConfig, GlobalVars_local)
-            }
-        }
+          }
       }
-  }
+      steps {
+          script {
+            echo "On _packer_ node"
+            doCheckout()
+            if (GlobalVars_local.BUILD_DECISION.toBoolean()) {
+              amiBuild(deployConfig, GlobalVars_local)
+            }
+            amiDeployment(deployConfig, GlobalVars_local)
+          }
+      }
+    }
 }
