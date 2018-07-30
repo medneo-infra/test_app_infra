@@ -32,29 +32,36 @@ pipeline {
             label 'lol'
         }
     }
-    stage ('Deployment') {
-      agent { label 'packer' }
-      when {
-          beforeAgent true
-          allOf {
-            expression { return prepDeployment(deployConfig, GlobalVars_local) }
-            anyOf {
-              expression { GlobalVars_local.FEATURE_BRANCH != null }
-              expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
-              expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
-              expression { return GloGlobalVars_localbalVars.PRODUCTION_DECISION.toBoolean() }
-            }
-          }
+    stages {
+      stage ('compile') {
+        steps {
+          echo "done compiling"
+        }
       }
-      steps {
-          script {
-            echo "On _packer_ node"
-            doCheckout()
-            if (GlobalVars_local.BUILD_DECISION.toBoolean()) {
-              amiBuild(deployConfig, GlobalVars_local)
+      stage ('Deployment') {
+        agent { label 'packer' }
+        when {
+            beforeAgent true
+            allOf {
+              expression { return prepDeployment(deployConfig, GlobalVars_local) }
+              anyOf {
+                expression { GlobalVars_local.FEATURE_BRANCH != null }
+                expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
+                expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
+                expression { return GloGlobalVars_localbalVars.PRODUCTION_DECISION.toBoolean() }
+              }
             }
-            amiDeployment(deployConfig, GlobalVars_local)
-          }
+        }
+        steps {
+            script {
+              echo "On _packer_ node"
+              doCheckout()
+              if (GlobalVars_local.BUILD_DECISION.toBoolean()) {
+                amiBuild(deployConfig, GlobalVars_local)
+              }
+              amiDeployment(deployConfig, GlobalVars_local)
+            }
+        }
       }
     }
 }
