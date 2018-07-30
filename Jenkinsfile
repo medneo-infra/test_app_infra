@@ -8,7 +8,7 @@ def deployConfig = [
   //appCommit : "5802d8fdb589b149575514121421ede360489739",
   appCommit : "latest",
   terraformProject : "customer-service",
-  featureBranch: "feature/nodes",
+  //featureBranch: "feature/nodes",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
