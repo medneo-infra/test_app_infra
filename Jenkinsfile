@@ -5,8 +5,8 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "scheduling",
-  //appCommit : "5802d8fdb589b149575514121421ede360489739",
-  appCommit : "latest",
+  appCommit : "21e32d7460ab84c8e76b8de9d21fd1d05a7c48ef",
+  //appCommit : "latest",
   terraformProject : "customer-service",
   featureBranch: "feature/nodes",
 
