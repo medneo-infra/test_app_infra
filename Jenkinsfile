@@ -19,13 +19,13 @@ pipeline {
         }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@feature/alb_healthcheck") _
+              @Library("infra-deployment/standardPipeline@v0.1.2") _
               def deployConfig = [
                 appName : "scheduling",
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
                 //appCommit : "latest",
                 terraformProject : "customer-service",
-                featureBranch: "feature/alb_healthcheck",
+                //featureBranch: "feature/alb_healthcheck",
 
                 stagingBranch : "development",
                 stagingAutoscalingGroupMin : "1",
@@ -42,7 +42,7 @@ pipeline {
                 prodAutoscalingGroupMax : "2",
                 prodInstanceType : "t2.micro",
 
-                healhEndpoint : "/health"
+                healhEndpoint : "/"
               ]
               standardPipeline(deployConfig)
             }
