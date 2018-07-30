@@ -1,3 +1,29 @@
+@Library("infra-deployment@feature/nodes") _
+
+import com.deployment.GlobalVars
+def Class GlobalVars_local = GlobalVars
+
+def deployConfig = [
+  appName : "scheduling",
+  appCommit : "latest",
+  terraformProject : "customer-service",
+
+  stagingBranch : "development",
+  stagingAutoscalingGroupMin : "1",
+  stagingAutoscalingGroupMax : "1",
+  stagingInstanceType : "t2.micro",
+
+  releasePrefix : "release",
+  releaseAutoscalingGroupMin : "1",
+  releaseAutoscalingGroupMax : "1",
+  releaseInstanceType : "t2.micro",
+
+  productionBranch : "master",
+  prodAutoscalingGroupMin : "1",
+  prodAutoscalingGroupMax : "1",
+  prodInstanceType : "t2.micro"
+]
+
 pipeline {
   agent {
         node {
@@ -5,48 +31,34 @@ pipeline {
         }
     }
     stages {
-      stage ('Start') {
+      stage ('compile') {
         steps {
-          script {
-            sh "echo 'been here'"
-          }
+          echo "done compiling"
         }
       }
-
-      stage ('Deploy') {
-        agent {
-          label 'packer'
+      stage ('Deployment') {
+        agent { label 'packer' }
+        when {
+            beforeAgent true
+            allOf {
+              expression { return prepDeployment(deployConfig, GlobalVars_local) }
+              anyOf {
+                expression { GlobalVars_local.FEATURE_BRANCH != null }
+                expression { return GlobalVars_local.STAGING_DECISION }
+                expression { return GlobalVars_local.RELEASE_DECISION }
+                expression { return GlobalVars_local.PRODUCTION_DECISION }
+              }
+            }
         }
         steps {
             script {
-              @Library("infra-deployment/standardPipeline@v0.1.2") _
-              def deployConfig = [
-                appName : "scheduling",
-                appCommit : "5802d8fdb589b149575514121421ede360489739",
-                //appCommit : "latest",
-                terraformProject : "customer-service",
-                //featureBranch: "feature/alb_healthcheck",
-
-                stagingBranch : "development",
-                stagingAutoscalingGroupMin : "1",
-                stagingAutoscalingGroupMax : "2",
-                stagingInstanceType : "t2.micro",
-
-                releasePrefix : "release",
-                releaseAutoscalingGroupMin : "1",
-                releaseAutoscalingGroupMax : "2",
-                releaseInstanceType : "t2.micro",
-
-                productionBranch : "master",
-                prodAutoscalingGroupMin : "1",
-                prodAutoscalingGroupMax : "2",
-                prodInstanceType : "t2.micro",
-
-                healthEndpoint : "/"
-              ]
-              standardPipeline(deployConfig)
+              doCheckout()
+              if (GlobalVars_local.BUILD_DECISION) {
+                amiBuild(deployConfig, GlobalVars_local)
+              }
+              amiDeployment(deployConfig, GlobalVars_local)
             }
         }
       }
-  }
+    }
 }
