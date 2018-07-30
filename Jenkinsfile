@@ -46,17 +46,16 @@ pipeline {
               expression { return prepDeployment(deployConfig, GlobalVars_local) }
               anyOf {
                 expression { GlobalVars_local.FEATURE_BRANCH != null }
-                expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
-                expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
-                expression { return GlobalVars_local.PRODUCTION_DECISION.toBoolean() }
+                expression { return GlobalVars_local.STAGING_DECISION }
+                expression { return GlobalVars_local.RELEASE_DECISION }
+                expression { return GlobalVars_local.PRODUCTION_DECISION }
               }
             }
         }
         steps {
             script {
-              echo "On _packer_ node"
               doCheckout()
-              if (GlobalVars_local.BUILD_DECISION.toBoolean()) {
+              if (GlobalVars_local.BUILD_DECISION) {
                 amiBuild(deployConfig, GlobalVars_local)
               }
               amiDeployment(deployConfig, GlobalVars_local)
