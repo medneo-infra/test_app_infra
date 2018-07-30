@@ -48,7 +48,7 @@ pipeline {
                 expression { GlobalVars_local.FEATURE_BRANCH != null }
                 expression { return GlobalVars_local.STAGING_DECISION.toBoolean() }
                 expression { return GlobalVars_local.RELEASE_DECISION.toBoolean() }
-                expression { return GloGlobalVars_localbalVars.PRODUCTION_DECISION.toBoolean() }
+                expression { return GlobalVars_local.PRODUCTION_DECISION.toBoolean() }
               }
             }
         }
