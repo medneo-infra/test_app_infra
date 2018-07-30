@@ -4,7 +4,7 @@ import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
-  appName : "scheduling",
+  appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
 
