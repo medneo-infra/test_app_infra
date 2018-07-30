@@ -25,7 +25,7 @@ pipeline {
                 appCommit : "5802d8fdb589b149575514121421ede360489739",
                 //appCommit : "latest",
                 terraformProject : "customer-service",
-                //featureBranch: "feature/nodes",
+                //featureBranch: "feature/alb_healthcheck",
 
                 stagingBranch : "development",
                 stagingAutoscalingGroupMin : "1",
@@ -40,7 +40,9 @@ pipeline {
                 productionBranch : "master",
                 prodAutoscalingGroupMin : "1",
                 prodAutoscalingGroupMax : "2",
-                prodInstanceType : "t2.micro"
+                prodInstanceType : "t2.micro",
+
+                healthEndpoint : "/"
               ]
               standardPipeline(deployConfig)
             }
