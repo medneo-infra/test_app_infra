@@ -5,24 +5,22 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "scheduling",
-  appCommit : "21e32d7460ab84c8e76b8de9d21fd1d05a7c48ef",
-  //appCommit : "latest",
+  appCommit : "latest",
   terraformProject : "customer-service",
-  featureBranch: "feature/nodes",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
-  stagingAutoscalingGroupMax : "2",
+  stagingAutoscalingGroupMax : "1",
   stagingInstanceType : "t2.micro",
 
   releasePrefix : "release",
   releaseAutoscalingGroupMin : "1",
-  releaseAutoscalingGroupMax : "2",
+  releaseAutoscalingGroupMax : "1",
   releaseInstanceType : "t2.micro",
 
   productionBranch : "master",
   prodAutoscalingGroupMin : "1",
-  prodAutoscalingGroupMax : "2",
+  prodAutoscalingGroupMax : "1",
   prodInstanceType : "t2.micro"
 ]
 
