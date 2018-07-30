@@ -42,7 +42,7 @@ pipeline {
                 prodAutoscalingGroupMax : "2",
                 prodInstanceType : "t2.micro",
 
-                healhEndpoint : "/health"
+                healhEndpoint : "/"
               ]
               standardPipeline(deployConfig)
             }
