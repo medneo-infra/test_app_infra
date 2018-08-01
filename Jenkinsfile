@@ -1,4 +1,4 @@
-@Library("infra-deployment@development") _
+@Library("infra-deployment@v0.2") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
