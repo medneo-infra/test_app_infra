@@ -1,4 +1,4 @@
-@Library("infra-deployment@release/v0.2") _
+@Library("infra-deployment@feature/promoteAMI") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
@@ -7,6 +7,7 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
+  featureBranch: "feature/promoteAMI",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
