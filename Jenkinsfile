@@ -7,7 +7,7 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
-  featureBranch: "feature/promoteAMI",
+  //featureBranch: "feature/promoteAMI",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
