@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/promoteAMI") _
+@Library("infra-deployment@feature/azure") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
@@ -7,7 +7,7 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
-  //featureBranch: "feature/promoteAMI",
+  featureBranch: "feature/azure",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -59,7 +59,7 @@ pipeline {
               if (GlobalVars_local.BUILD_DECISION) {
                 amiBuild(deployConfig, GlobalVars_local)
               }
-              amiDeployment(deployConfig, GlobalVars_local)
+              //amiDeployment(deployConfig, GlobalVars_local)
             }
         }
       }
