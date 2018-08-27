@@ -5,26 +5,26 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "testapp",
-  appCommit : "latest",
+  appCommit : "e64f513c",
   terraformProject : "customer-service",
   featureBranch: "feature/azure",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
   stagingAutoscalingGroupMax : "1",
-  stagingInstanceType : "t2.micro",
+  stagingInstanceType : "Standard_A0",
 
   releasePrefix : "release",
   releaseAutoscalingGroupMin : "1",
   releaseAutoscalingGroupMax : "1",
-  releaseInstanceType : "t2.micro",
+  releaseInstanceType : "Standard_A0",
 
   productionBranch : "master",
   prodAutoscalingGroupMin : "1",
   prodAutoscalingGroupMax : "1",
-  prodInstanceType : "t2.micro",
+  prodInstanceType : "Standard_A0",
 
-  healthEndpoint : "/"
+  healthEndpoint : "/health"
 ]
 
 pipeline {
@@ -59,7 +59,7 @@ pipeline {
               if (GlobalVars_local.BUILD_DECISION) {
                 amiBuild(deployConfig, GlobalVars_local)
               }
-              //amiDeployment(deployConfig, GlobalVars_local)
+              amiDeployment(deployConfig, GlobalVars_local)
             }
         }
       }
