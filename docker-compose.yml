@@ -1,4 +1,4 @@
 scheduling:
-  image: "medneo-docker.jfrog.io/scheduling-frontend:${TAG}"
+  image: "nginx:${TAG}"
   ports:
    - "80:80"
