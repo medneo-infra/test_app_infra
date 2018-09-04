@@ -5,7 +5,7 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "testapp",
-  appCommit : "e64f513c",
+  appCommit : "latest",
   terraformProject : "customer-service",
   featureBranch: "feature/azure",
 
@@ -24,7 +24,7 @@ def deployConfig = [
   prodAutoscalingGroupMax : "1",
   prodInstanceType : "Standard_A0",
 
-  healthEndpoint : "/health"
+  healthEndpoint : "/nothealth"
 ]
 
 pipeline {
