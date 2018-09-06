@@ -8,6 +8,7 @@ def deployConfig = [
   appCommit : "latest",
   terraformProject : "customer-service",
   featureBranch: "feature/azure",
+  deploymentType: "docker",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
