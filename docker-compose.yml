@@ -1,0 +1,4 @@
+scheduling:
+  image: "nginx:${TAG}"
+  ports:
+   - "80:80"
