@@ -25,7 +25,7 @@ def deployConfig = [
   prodAutoscalingGroupMax : "1",
   prodInstanceType : "Standard_A0",
 
-  healthEndpoint : "/nothealth"
+  healthEndpoint : "/
 ]
 
 pipeline {
@@ -66,4 +66,3 @@ pipeline {
       }
     }
 }
-
