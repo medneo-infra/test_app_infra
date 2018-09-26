@@ -31,7 +31,7 @@ def deployConfig = [
 pipeline {
   agent {
         node {
-            label 'lol'
+            label '20GB'
         }
     }
     stages {
