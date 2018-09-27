@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/azure") _
+@Library("infra-deployment@feature/tls") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
@@ -7,7 +7,7 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
-  featureBranch: "feature/azure",
+  featureBranch: "feature/tls",
   deploymentType: "docker",
 
   stagingBranch : "development",
@@ -25,7 +25,7 @@ def deployConfig = [
   prodAutoscalingGroupMax : "1",
   prodInstanceType : "Standard_A0",
 
-  healthEndpoint : "/
+  healthEndpoint : "/"
 ]
 
 pipeline {
