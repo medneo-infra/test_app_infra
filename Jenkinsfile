@@ -5,7 +5,7 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "testapp",
-  appCommit : "latest",
+  appCommit : "800fb143fbf06f6930550b6a0dce72e9af9d7679",
   terraformProject : "customer-service",
   featureBranch: "feature/azure",
   deploymentType: "docker",
