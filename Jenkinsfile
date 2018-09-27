@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/tls") _
+@Library("infra-deployment@feature/azure") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
