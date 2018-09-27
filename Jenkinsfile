@@ -7,7 +7,7 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "customer-service",
-  featureBranch: "feature/tls",
+  featureBranch: "feature/azure",
   deploymentType: "docker",
 
   stagingBranch : "development",
