@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/azure") _
+@Library("infra-deployment@development") _
 
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
@@ -6,24 +6,24 @@ def Class GlobalVars_local = GlobalVars
 def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
-  terraformProject : "customer-service",
-  featureBranch: "feature/azure",
+  terraformProject : "internal-mgmt",
+  //featureBranch: "feature/azure",
   deploymentType: "docker",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
   stagingAutoscalingGroupMax : "1",
-  stagingInstanceType : "Standard_A0",
+  stagingInstanceType : "t2.micro",
 
   releasePrefix : "release",
   releaseAutoscalingGroupMin : "1",
   releaseAutoscalingGroupMax : "1",
-  releaseInstanceType : "Standard_A0",
+  releaseInstanceType : "t2.micro",
 
   productionBranch : "master",
   prodAutoscalingGroupMin : "1",
   prodAutoscalingGroupMax : "1",
-  prodInstanceType : "Standard_A0",
+  prodInstanceType : "t2.micro",
 
   healthEndpoint : "/health"
 ]
