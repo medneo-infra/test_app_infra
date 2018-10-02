@@ -25,7 +25,7 @@ def deployConfig = [
   prodAutoscalingGroupMax : "1",
   prodInstanceType : "t2.micro",
 
-  healthEndpoint : "/health"
+  healthEndpoint : "/"
 ]
 
 pipeline {
