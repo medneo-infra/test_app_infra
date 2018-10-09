@@ -5,7 +5,7 @@ def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   appName : "testapp",
-  appCommit : "800fb143fbf06f6930550b6a0dce72e9af9d7679",
+  appCommit : "latest",
   terraformProject : "customer-service",
   featureBranch: "feature/azure",
   deploymentType: "docker",
@@ -38,7 +38,7 @@ pipeline {
         node {
             label 'lol'
         }
-    }
+      }
     stages {
       stage ('compile') {
         steps {
@@ -58,7 +58,7 @@ pipeline {
                 expression { return GlobalVars_local.PRODUCTION_DECISION }
               }
             }
-        }
+          }
         steps {
             script {
               doCheckout()
@@ -67,7 +67,7 @@ pipeline {
               }
               amiDeployment(deployConfig, GlobalVars_local)
             }
+          }
         }
       }
     }
-}
