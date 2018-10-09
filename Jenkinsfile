@@ -28,8 +28,8 @@ def deployConfig = [
   healthEndpoint : "/",
 
   cloudEnvironment : "azure",
-  cloudEnvironmentGit : "https://github.com/medneo/arc-az-infrastructure",
-  cloudEnvironmentSrc : "stacks/applications/alb-based",
+  /* cloudEnvironmentGit : "https://github.com/medneo/arc-az-infrastructure",
+  cloudEnvironmentSrc : "stacks/applications/alb-based", */
   cloudEnvironmentVer : "*/development"
 ]
 
