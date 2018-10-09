@@ -25,7 +25,12 @@ def deployConfig = [
   prodAutoscalingGroupMax : "1",
   prodInstanceType : "Standard_A0",
 
-  healthEndpoint : "/"
+  healthEndpoint : "/",
+
+  cloudEnvironment : "azure",
+  cloudEnvironmentGit : "https://github.com/medneo/arc-az-infrastructure",
+  cloudEnvironmentSrc : "stacks/applications/alb-based/",
+  cloudEnvironmentVer : "*/development"
 ]
 
 pipeline {
