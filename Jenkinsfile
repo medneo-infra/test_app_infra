@@ -29,7 +29,7 @@ def deployConfig = [
 
   cloudEnvironment : "azure",
   cloudEnvironmentGit : "https://github.com/medneo/arc-az-infrastructure",
-  cloudEnvironmentSrc : "stacks/applications/alb-based/",
+  cloudEnvironmentSrc : "stacks/applications/alb-based",
   cloudEnvironmentVer : "*/development"
 ]
 
