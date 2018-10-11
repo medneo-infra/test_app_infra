@@ -1,7 +1,9 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import com.deployment.GlobalVars
+import com.deployment.CloudHelpers
 def Class GlobalVars_local = GlobalVars
+def cloud = new com.deployment.CloudHelpers.PipelineFactory.setCloudEnvironment(GlobalVars_local)
 
 def deployConfig = [
   appName : "testapp",
@@ -28,8 +30,6 @@ def deployConfig = [
   healthEndpoint : "/",
 
   cloudEnvironment : "azure",
-  /* cloudEnvironmentGit : "https://github.com/medneo/arc-az-infrastructure",
-  cloudEnvironmentSrc : "stacks/applications/alb-based", */
   cloudEnvironmentVer : "*/development"
 ]
 
@@ -61,11 +61,11 @@ pipeline {
           }
         steps {
             script {
-              doCheckout()
+              cloud.doCheckout()
               if (GlobalVars_local.BUILD_DECISION) {
-                amiBuild(deployConfig, GlobalVars_local)
+                cloud.amiBuild(deployConfig, GlobalVars_local)
               }
-              amiDeployment(deployConfig, GlobalVars_local)
+              cloud.amiDeploy(deployConfig, GlobalVars_local)
             }
           }
         }
