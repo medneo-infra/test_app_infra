@@ -3,7 +3,8 @@
 import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
-def cloud = setCloudEnvironment(GlobalVars_local)
+def cloud = PipelineFactory
+cloud.setCloudEnvironment(GlobalVars_local)
 
 def deployConfig = [
   appName : "testapp",
