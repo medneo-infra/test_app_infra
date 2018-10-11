@@ -1,7 +1,7 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import com.deployment.GlobalVars
-import com.deployment.CloudHelpers.PipelineFactory
+import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
 def cloud = new PipelineFactory()
 def something = cloud.setCloudEnvironment(GlobalVars_local)
