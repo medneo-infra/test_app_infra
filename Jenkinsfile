@@ -64,7 +64,8 @@ pipeline {
             script {
               /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
               def ialal = new com.deployment.TestClass()
-              ialal.testIt()
+              classB = ialal.testIt()
+              classB.testIt()
               /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
