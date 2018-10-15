@@ -1,9 +1,9 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import com.deployment.GlobalVars
-import com.deployment.PipelineFactory
+import com.deployment.Test
 def Class GlobalVars_local = GlobalVars
-PipelineFactory PipelineFactory_local = PipelineFactory
+TestClass ialal = new TestClass()
 
 def deployConfig = [
   appName : "testapp",
@@ -64,7 +64,7 @@ pipeline {
         steps {
             script {
               /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
-              PipelineFactory_local.setCloudEnvironment(GlobalVars_local)
+              ialal.testIt()
               /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
