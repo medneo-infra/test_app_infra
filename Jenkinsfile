@@ -62,13 +62,13 @@ pipeline {
           }
         steps {
             script {
-              def factory = PipelineFactory
-              def cloud_env = factory.setCloudEnvironment(GlobalVars_local)
-              cloud_env.doCheckout()
-              if (GlobalVars_local.BUILD_DECISION) {
+              def factory = Checkouter
+              /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
+              factory.doCheckout()
+              /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
-              cloud_env.amiDeploy(deployConfig, GlobalVars_local)
+              cloud_env.amiDeploy(deployConfig, GlobalVars_local) */
             }
           }
         }
