@@ -62,11 +62,7 @@ pipeline {
           }
         steps {
             script {
-              /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
-              /* if (GlobalVars_local.BUILD_DECISION) {
-                cloud_env.amiBuild(deployConfig, GlobalVars_local)
-              }
-              cloud_env.amiDeploy(deployConfig, GlobalVars_local) */
+              sh "Bye World!"
             }
           }
         }
