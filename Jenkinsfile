@@ -3,7 +3,7 @@
 import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
-PipelineFactory PipelineFactory_local = new PipelineFactory()
+PipelineFactory PipelineFactory_local = PipelineFactory
 
 def deployConfig = [
   appName : "testapp",
