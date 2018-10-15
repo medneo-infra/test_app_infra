@@ -3,7 +3,7 @@
 import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
-def vault_local = new Vault()
+Vault vault_local = new Vault()
 
 def deployConfig = [
   appName : "testapp",
