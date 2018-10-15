@@ -1,7 +1,7 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import com.deployment.GlobalVars
-import com.deployment.Test
+import com.deployment.TestClass
 def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
