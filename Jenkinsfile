@@ -3,7 +3,7 @@
 import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
-def cloud = PipelineFactory
+
 
 def deployConfig = [
   appName : "testapp",
@@ -61,12 +61,12 @@ pipeline {
           }
         steps {
             script {
-              def cloud_env = cloud.setCloudEnvironment(GlobalVars_local)
+              def cloud_env = PipelineFactory.setCloudEnvironment(GlobalVars_local)
               cloud_env.doCheckout()
               if (GlobalVars_local.BUILD_DECISION) {
-                cloud.amiBuild(deployConfig, GlobalVars_local)
+                cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
-              cloud.amiDeploy(deployConfig, GlobalVars_local)
+              cloud_env.amiDeploy(deployConfig, GlobalVars_local)
             }
           }
         }
