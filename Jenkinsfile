@@ -61,7 +61,7 @@ pipeline {
           }
         steps {
             script {
-              def factory = new PipelineFactory()
+              def factory = PipelineFactory
               def cloud_env = factory.setCloudEnvironment(GlobalVars_local)
               cloud_env.doCheckout()
               if (GlobalVars_local.BUILD_DECISION) {
