@@ -3,7 +3,7 @@
 import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
-Vault vault_local = new Vault()
+PipelineFactory PipelineFactory_local = new PipelineFactory()
 
 def deployConfig = [
   appName : "testapp",
@@ -64,7 +64,7 @@ pipeline {
         steps {
             script {
               /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
-              vault_local.functionBuild()
+              PipelineFactory_local.setCloudEnvironment(GlobalVars_local)
               /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
