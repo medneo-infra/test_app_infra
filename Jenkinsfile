@@ -64,7 +64,7 @@ pipeline {
             script {
               def factory = Checkouter
               /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
-              factory.doCheckout()
+              factory.doCheckout(GlobalVars_local)
               /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
               }
