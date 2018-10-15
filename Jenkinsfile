@@ -3,7 +3,6 @@
 import com.deployment.GlobalVars
 import com.deployment.Test
 def Class GlobalVars_local = GlobalVars
-TestClass ialal = new TestClass()
 
 def deployConfig = [
   appName : "testapp",
@@ -64,6 +63,7 @@ pipeline {
         steps {
             script {
               /* def cloud_env = factory.setCloudEnvironment(GlobalVars_local) */
+              def ialal = new com.deployment.TestClass()
               ialal.testIt()
               /* if (GlobalVars_local.BUILD_DECISION) {
                 cloud_env.amiBuild(deployConfig, GlobalVars_local)
