@@ -4,7 +4,6 @@ import com.deployment.GlobalVars
 import com.deployment.PipelineFactory
 def Class GlobalVars_local = GlobalVars
 
-
 def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
@@ -61,13 +60,12 @@ pipeline {
           }
         steps {
             script {
-              def factory = PipelineFactory
+              /* def factory = PipelineFactory
               def cloud_env = factory.setCloudEnvironment(GlobalVars_local)
-              cloud_env.doCheckout()
+              cloud_env.doCheckout() */
               if (GlobalVars_local.BUILD_DECISION) {
-                cloud_env.amiBuild(deployConfig, GlobalVars_local)
+                doDeployment(deployConfig, GlobalVars_local)
               }
-              cloud_env.amiDeploy(deployConfig, GlobalVars_local)
             }
           }
         }
