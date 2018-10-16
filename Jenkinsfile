@@ -35,7 +35,7 @@ def deployConfig = [
 
 node {
   stage('Test') {
-    doThis
+    return doThis
     sh "echo 'I was here'"
   }
 }
