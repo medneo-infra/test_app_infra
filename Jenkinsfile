@@ -13,7 +13,7 @@ def deployConfig = [
   featureBranch : "feature/refactoring",
   cloudEnvironment : "azure",
   cloudEnvironmentVer : "refs/tags/v0.4",
-  functionSource : "ReadMe.md/"
+  functionSource : "ReadMe.md/",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
