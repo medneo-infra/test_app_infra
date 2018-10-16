@@ -11,7 +11,7 @@ import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
-  appName : "testapp",
+  functName : "testapp",
   appCommit : "latest",
   terraformProject : "internal-mgmt",
   deploymentType : "docker",
@@ -64,7 +64,8 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             doCheckout this, GlobalVars_local
-            amiBuild this, deployConfig, GlobalVars_local
+            ls
+            functionBuild this, deployConfig, GlobalVars_local
           }
         }
       }
