@@ -33,37 +33,10 @@ def deployConfig = [
   cloudEnvironmentSrc : "/stacks/applications/alb_based"
 ]
 
-pipeline {
-  agent {
-        node {
-            label 'lol'
-        }
-      }
-    stages {
-      stage ('compile') {
-        steps {
-          echo "done compiling"
-        }
-      }
-      stage ('Deployment') {
-        agent { label 'packer' }
-        when {
-            beforeAgent true
-            allOf {
-              expression { return prepDeployment(deployConfig, GlobalVars_local) }
-              anyOf {
-                expression { GlobalVars_local.FEATURE_BRANCH != null }
-                expression { return GlobalVars_local.STAGING_DECISION }
-                expression { return GlobalVars_local.RELEASE_DECISION }
-                expression { return GlobalVars_local.PRODUCTION_DECISION }
-              }
-            }
-          }
-        steps {
-            script {
-              doThis
-            }
-          }
-        }
-      }
+node {
+  stage('Test') {
+    steps {
+      doThis
     }
+  }
+}
