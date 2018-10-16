@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import static com.deployment.PipelineFactory.*
+import static com.deployment.ReleaseIDGenerator.*
 /* import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
  */
@@ -44,8 +44,8 @@ pipeline {
       stage ('compile') {
         steps {
           script {
-            cloud = setCloudEnvironment this
-            cloud.functionBuild this
+            cloud = generate this
+            cloud.operate this
           }
         }
       }
