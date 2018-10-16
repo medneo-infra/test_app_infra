@@ -61,7 +61,7 @@ pipeline {
           }
         steps {
             script {
-              doThis()
+              doThis
             }
           }
         }
