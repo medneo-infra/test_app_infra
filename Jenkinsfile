@@ -3,8 +3,6 @@
 import static com.deployment.ReleaseIDGenerator.*
 /* import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars */
-def APP_COMMIT = "latest"
-def ARTIFACT_BUCKET = "18-000-arc-default-artifacts"
 
 def deployConfig = [
   funcName : "testapp",
@@ -47,7 +45,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.setCloudEnvironment this 'latest' '18-000-arc-default-artifacts'
+            cloud.setCloudEnvironment this 'latest'
           }
         }
       }
