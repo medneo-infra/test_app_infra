@@ -45,7 +45,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.operate this
+            cloud.setCloudEnvironment this
           }
         }
       }
