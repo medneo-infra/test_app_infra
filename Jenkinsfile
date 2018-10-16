@@ -11,7 +11,7 @@ def deployConfig = [
   terraformProject : "internal-mgmt",
   deploymentType : "docker",
   configBranch : "development",
-  featureBranch : "feature/refactoring",
+  featureBranch : "feature/azure",
   cloudEnvironment : "azure",
   cloudEnvironmentVer : "refs/tags/v0.4",
   functionSource : "ReadMe.md",
@@ -43,10 +43,23 @@ pipeline {
     }
     stages {
       stage ('compile') {
+        when {
+            beforeAgent true
+            allOf {
+              expression { return prepDeployment(deployConfig, GlobalVars_local) }
+              anyOf {
+                expression { GlobalVars_local.FEATURE_BRANCH != null }
+                expression { return GlobalVars_local.STAGING_DECISION }
+                expression { return GlobalVars_local.RELEASE_DECISION }
+                expression { return GlobalVars_local.PRODUCTION_DECISION }
+              }
+            }
+        }
         steps {
           script {
+            prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
-            /* cloud.doCheckout this, GlobalVars_local */
+            cloud.doCheckout this, GlobalVars_local
             cloud.functionBuild this, deployConfig, GlobalVars_local
           }
         }
