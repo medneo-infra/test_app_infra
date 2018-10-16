@@ -1,6 +1,7 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.PipelineFactory.*
+import static com.deployment.Checkouter.*
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
