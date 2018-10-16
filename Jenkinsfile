@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import com.deployment.*
+import static com.deployment.*
 
 pipeline {
   agent {
@@ -12,7 +12,7 @@ pipeline {
       stage ('compile') {
         steps {
           echo "done compiling"
-          doThis()
+          doThis
           sh "ls"
         }
       }
