@@ -6,15 +6,14 @@ import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
-  funcName : "testapp",
+  appName : "testapp",
   appCommit : "latest",
   terraformProject : "internal-mgmt",
   deploymentType : "docker",
   configBranch : "development",
   featureBranch : "feature/azure",
-  cloudEnvironment : "azure",
+  cloudEnvironment : "aws",
   cloudEnvironmentVer : "*/development",
-  functionSource : "ReadMe.md",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -60,7 +59,7 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             doCheckout this, GlobalVars_local
-            cloud.functionBuild this, deployConfig, GlobalVars_local
+            cloud.amiBuild this, deployConfig, GlobalVars_local
           }
         }
       }
