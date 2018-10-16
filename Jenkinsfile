@@ -11,8 +11,10 @@ pipeline {
     stages {
       stage ('compile') {
         steps {
-          operator = generate this
-          operator.operate this
+          script {
+            operator = generate this
+            operator.operate this
+          }
         }
       }
     }
