@@ -1,9 +1,9 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.PipelineFactory.*
-import com.deployment.GlobalVars
+/* import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
-
+ */
 def deployConfig = [
   funcName : "testapp",
   appCommit : "latest",
