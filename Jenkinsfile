@@ -1,8 +1,8 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.ReleaseIDGenerator.*
-/* import com.deployment.GlobalVars
-def Class GlobalVars_local = GlobalVars */
+import com.deployment.GlobalVars
+def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
   funcName : "testapp",
@@ -13,7 +13,7 @@ def deployConfig = [
   featureBranch : "feature/refactoring",
   cloudEnvironment : "azure",
   cloudEnvironmentVer : "refs/tags/v0.4",
-  functionSource : "ReadMe.md/",
+  functionSource : "ReadMe.md",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -45,7 +45,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.setCloudEnvironment this, 'latest', deployConfig
+            cloud.setCloudEnvironment this, 'latest', deployConfig, GlobalVars_local
           }
         }
       }
