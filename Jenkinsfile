@@ -1,8 +1,10 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.ReleaseIDGenerator.*
-import com.deployment.GlobalVars
-def Class GlobalVars_local = GlobalVars
+/* import com.deployment.GlobalVars
+def Class GlobalVars_local = GlobalVars */
+def APP_COMMIT = "latest"
+def ARTIFACT_BUCKET = "18-000-arc-default-artifacts"
 
 def deployConfig = [
   funcName : "testapp",
@@ -45,7 +47,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.setCloudEnvironment this GlobalVars_local
+            cloud.setCloudEnvironment this deployConfig ARTIFACT_BUCKET APP_COMMIT
           }
         }
       }
