@@ -44,7 +44,7 @@ pipeline {
       stage ('compile') {
         steps {
           script {
-            cloud = setCloudEnvironment this GlobalVars_local
+            cloud = setCloudEnvironment this
             cloud.functionBuild this
           }
         }
