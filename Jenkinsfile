@@ -47,7 +47,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.setCloudEnvironment this 'latest' '18-000-arc-default-artifacts' deployConfig
+            cloud.setCloudEnvironment this 'latest' '18-000-arc-default-artifacts'
           }
         }
       }
