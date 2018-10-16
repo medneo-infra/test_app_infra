@@ -2,6 +2,8 @@
 
 import static com.deployment.PipelineFactory.*
 import static com.deployment.Checkouter.*
+import static com.deployment.Builder.*
+import static com.deployment.Deployer.*
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
