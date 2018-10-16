@@ -1,6 +1,9 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.PipelineFactory.*
+import static com.deployment.Azure.*
+import static com.deployment.Aws.*
+import static com.deployment.Vault.*
 import static com.deployment.Checkouter.*
 import static com.deployment.Builder.*
 import static com.deployment.Deployer.*
@@ -61,7 +64,7 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             doCheckout this, GlobalVars_local
-            amiDeploy this, deployConfig, GlobalVars_local
+            cloud.amiBuild this, deployConfig, GlobalVars_local
           }
         }
       }
