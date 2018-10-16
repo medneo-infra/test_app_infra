@@ -1,7 +1,7 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.PipelineFactory.*
-/* import static com.deployment.Checkouter.* */
+import static com.deployment.Checkouter.*
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
@@ -59,7 +59,7 @@ pipeline {
           script {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
-            cloud.doCheckout this, GlobalVars_local
+            doCheckout this, GlobalVars_local
             cloud.functionBuild this, deployConfig, GlobalVars_local
           }
         }
