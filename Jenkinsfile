@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import static com.deployment.ReleaseIDGenerator*
+import static com.deployment.ReleaseIDGenerator.*
 
 pipeline {
   agent {
