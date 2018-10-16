@@ -37,6 +37,6 @@ node {
   stage('Test') {
     doThis
     sh "echo 'I was here'"
-    sh "echo '${doThis}'"
+    sh "${doThis}"
   }
 }
