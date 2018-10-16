@@ -12,7 +12,7 @@ pipeline {
       stage ('compile') {
         steps {
           echo "done compiling"
-          doThis this
+          generate this
           sh "ls"
         }
       }
