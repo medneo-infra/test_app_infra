@@ -13,7 +13,7 @@ pipeline {
         steps {
           echo "done compiling"
           doThis()
-          ls
+          sh "ls"
         }
       }
     }
