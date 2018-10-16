@@ -1,7 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import com.deployment.GlobalVars
-import com.deployment.TestClass
+import com.deployment.*
 def Class GlobalVars_local = GlobalVars
 
 def deployConfig = [
@@ -62,7 +61,7 @@ pipeline {
           }
         steps {
             script {
-              sh "Bye World!"
+              doThis()
             }
           }
         }
