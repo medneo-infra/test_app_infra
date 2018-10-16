@@ -64,7 +64,7 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             doCheckout this, GlobalVars_local
-            ls
+            sh "ls"
             functionBuild this, deployConfig, GlobalVars_local
           }
         }
