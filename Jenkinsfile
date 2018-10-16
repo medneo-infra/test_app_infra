@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import static com.deployment.*
+import static com.deployment.ReleaseIDGenerator*
 
 pipeline {
   agent {
@@ -12,7 +12,7 @@ pipeline {
       stage ('compile') {
         steps {
           echo "done compiling"
-          doThis
+          doThis this
           sh "ls"
         }
       }
