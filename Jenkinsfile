@@ -1,9 +1,9 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.ReleaseIDGenerator.*
-/* import com.deployment.GlobalVars
+import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
- */
+
 def deployConfig = [
   funcName : "testapp",
   appCommit : "latest",
@@ -45,7 +45,7 @@ pipeline {
         steps {
           script {
             cloud = generate this
-            cloud.setCloudEnvironment this
+            cloud.setCloudEnvironment this GlobalVars_local
           }
         }
       }
