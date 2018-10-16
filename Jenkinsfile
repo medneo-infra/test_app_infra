@@ -3,5 +3,6 @@
 import static com.deployment.ReleaseIDGenerator.*
 
 node {
-  generate this
+  operator = generate this
+  operator.operate this
 }
