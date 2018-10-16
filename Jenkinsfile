@@ -37,5 +37,7 @@ node {
   stage('Test') {
     sh "echo 'I was here'"
     doThis
+    sh "touch 3333.txt"
+    sh "ls"
   }
 }
