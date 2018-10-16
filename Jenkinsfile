@@ -35,8 +35,6 @@ def deployConfig = [
 
 node {
   stage('Test') {
-    steps {
-      doThis
-    }
+    doThis
   }
 }
