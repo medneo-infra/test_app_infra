@@ -45,7 +45,7 @@ pipeline {
         steps {
           script {
             cloud = setCloudEnvironment this, GlobalVars_local
-            cloud.doCheckout this deployConfig, GlobalVars_local
+            cloud.doCheckout this, GlobalVars_local
             cloud.functionBuild this, deployConfig, GlobalVars_local
           }
         }
