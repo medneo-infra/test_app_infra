@@ -64,7 +64,7 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             sh "ls"
-            def builder = new Builder()
+            Builder builder = new Builder()
             builder.amiBuild this, deployConfig, GlobalVars_local
           }
         }
