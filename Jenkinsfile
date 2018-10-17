@@ -65,7 +65,7 @@ pipeline {
             cloud = setCloudEnvironment this, GlobalVars_local
             doCheckout this, GlobalVars_local
             sh "ls"
-            amiBuild this, deployConfig, GlobalVars_local
+            cloud.amiBuild this, deployConfig, GlobalVars_local
           }
         }
       }
