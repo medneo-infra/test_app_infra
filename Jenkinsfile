@@ -1,4 +1,4 @@
-@Library("infra-deployment@feature/refactoring") _
+@Library("infra-deployment@feature/azure") _
 
 /* import static com.deployment.PipelineFactory.*
 import static com.deployment.Azure.*
