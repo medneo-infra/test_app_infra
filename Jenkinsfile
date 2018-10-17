@@ -63,9 +63,7 @@ pipeline {
           script {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
-            doCheckout this, GlobalVars_local
             sh "ls"
-            cloud.amiDeploy this, deployConfig, GlobalVars_local
           }
         }
       }
