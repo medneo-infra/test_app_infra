@@ -1,7 +1,7 @@
 @Library("infra-deployment@feature/refactoring") _
 
 import static com.deployment.PipelineFactory.*
-import static com.deployment.Azure.*
+/* import static com.deployment.Azure.* */
 import static com.deployment.Aws.*
 import static com.deployment.Vault.*
 import static com.deployment.Checkouter.*
