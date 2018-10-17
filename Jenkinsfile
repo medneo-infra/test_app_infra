@@ -1,12 +1,5 @@
-@Library("infra-deployment@feature/azure") _
+@Library("infra-deployment@development") _
 
-/* import static com.deployment.PipelineFactory.*
-import static com.deployment.Azure.*
-import static com.deployment.Aws.*
-import static com.deployment.Vault.*
-import static com.deployment.Checkouter.*
-import static com.deployment.Builder.*
-import static com.deployment.Deployer.* */
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
@@ -14,11 +7,8 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "internal-mgmt",
-  deploymentType : "docker",
-  configBranch : "development",
-  featureBranch : "feature/azure",
-  cloudEnvironment : "azure",
-  cloudEnvironmentVer : "*/development",
+  //featureBranch: "feature/azure",
+  deploymentType: "docker",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -38,7 +28,6 @@ def deployConfig = [
   healthEndpoint : "/"
 ]
 
-
 pipeline {
   agent {
         node {
@@ -47,6 +36,12 @@ pipeline {
     }
     stages {
       stage ('compile') {
+        steps {
+          echo "done compiling"
+        }
+      }
+      stage ('Deployment') {
+        agent { label 'packer' }
         when {
             beforeAgent true
             allOf {
@@ -60,14 +55,10 @@ pipeline {
             }
         }
         steps {
-          script {
-            /* prepDeployment
-            cloud = setCloudEnvironment this, GlobalVars_local */
-            sh "ls"
-            sh "aws s3 ls"
-            /* cloud.amiBuild this, deployConfig, GlobalVars_local */
-          }
+            script {
+              sh "aws s3 ls"
+            }
         }
       }
     }
-  }
+}
