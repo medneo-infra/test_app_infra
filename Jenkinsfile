@@ -1,12 +1,12 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import static com.deployment.PipelineFactory.*
+/* import static com.deployment.PipelineFactory.*
 import static com.deployment.Azure.*
 import static com.deployment.Aws.*
 import static com.deployment.Vault.*
 import static com.deployment.Checkouter.*
 import static com.deployment.Builder.*
-import static com.deployment.Deployer.*
+import static com.deployment.Deployer.* */
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
@@ -61,11 +61,11 @@ pipeline {
         }
         steps {
           script {
-            prepDeployment
-            cloud = setCloudEnvironment this, GlobalVars_local
+            /* prepDeployment
+            cloud = setCloudEnvironment this, GlobalVars_local */
             sh "ls"
             sh "aws s3 ls"
-            cloud.amiBuild this, deployConfig, GlobalVars_local
+            /* cloud.amiBuild this, deployConfig, GlobalVars_local */
           }
         }
       }
