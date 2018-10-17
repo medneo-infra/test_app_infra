@@ -64,6 +64,8 @@ pipeline {
             prepDeployment
             cloud = setCloudEnvironment this, GlobalVars_local
             sh "ls"
+            sh "aws s3 ls"
+            cloud.amiBuild this, deployConfig, GlobalVars_local
           }
         }
       }
