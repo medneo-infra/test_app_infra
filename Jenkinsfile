@@ -47,11 +47,6 @@ pipeline {
     }
     stages {
       stage ('compile') {
-        steps {
-          echo "done compiling"
-        }
-      }
-      stage ('Deployment') {
         agent { label 'packer' }
         when {
             beforeAgent true
@@ -66,10 +61,14 @@ pipeline {
             }
         }
         steps {
-            script {
-              sh "aws s3 ls"
-            }
+          script {
+            prepDeployment
+            cloud = setCloudEnvironment this, GlobalVars_local
+            sh "ls"
+            sh "aws s3 ls"
+            cloud.amiBuild this, deployConfig, GlobalVars_local
+          }
         }
       }
     }
-}
+  }
