@@ -1,5 +1,12 @@
-@Library("infra-deployment@development") _
+@Library("infra-deployment@feature/refactoring") _
 
+/* import static com.deployment.PipelineFactory.*
+import static com.deployment.Azure.*
+import static com.deployment.Aws.*
+import static com.deployment.Vault.*
+import static com.deployment.Checkouter.*
+import static com.deployment.Builder.*
+import static com.deployment.Deployer.* */
 import com.deployment.GlobalVars
 def Class GlobalVars_local = GlobalVars
 
@@ -7,8 +14,11 @@ def deployConfig = [
   appName : "testapp",
   appCommit : "latest",
   terraformProject : "internal-mgmt",
-  featureBranch: "feature/azure",
-  deploymentType: "docker",
+  deploymentType : "docker",
+  configBranch : "development",
+  featureBranch : "feature/azure",
+  cloudEnvironment : "azure",
+  cloudEnvironmentVer : "*/development",
 
   stagingBranch : "development",
   stagingAutoscalingGroupMin : "1",
@@ -27,6 +37,7 @@ def deployConfig = [
 
   healthEndpoint : "/"
 ]
+
 
 pipeline {
   agent {
