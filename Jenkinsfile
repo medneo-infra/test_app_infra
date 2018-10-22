@@ -1,6 +1,6 @@
 @Library("infra-deployment@feature/refactoring") _
 
-import static com.deployment.*.*
+import static com.deployment.*
 /* import static com.deployment.Aws.*
 import static com.deployment.Vault.*
 import static com.deployment.Checkouter.*
