@@ -16,7 +16,7 @@ def deployConfig = [
   deploymentType : "docker",
   configBranch : "development",
   featureBranch : "feature/azure",
-  cloudEnvironment : "azrure",
+  cloudEnvironment : "azure",
   cloudEnvironmentVer : "*/development",
 
   stagingBranch : "development",
